@@ -182,8 +182,9 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const found = str.lastIndexOf(value);
+  return str.replace(found, '');
 }
 
 /**
@@ -213,8 +214,8 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr, 0);
 }
 
 /**
@@ -228,8 +229,8 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr, str.length);
 }
 
 /**
@@ -245,8 +246,9 @@ function endsWith(/* str, substr */) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  const formatNumber = (number) => String(number).padStart(2, '0');
+  return `${formatNumber(minutes)}:${formatNumber(seconds)}`;
 }
 
 /**
@@ -308,8 +310,8 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  return [...str.matchAll(/[aeiouyAEIOUY]/g)].length;
 }
 
 /**
@@ -326,8 +328,8 @@ function countVowels(/* str */) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  let revstr;
-  return revstr === str.toLowerCase().split('').reverse().join('');
+  const inputStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return inputStr === str.split('').reverse().join('');
 }
 
 /**
@@ -375,15 +377,11 @@ function reverseWords(str) {
  *   invertCase('12345') => '12345'
  */
 function invertCase(str) {
-  return [...str];
-  //   .map(st => {
-  //   if (st === st.toLowerCase()) {
-  //     return st.toUpperCase();
-  //   } else if (st === st.toUpperCase()) {
-  //     return st.toLowerCase();
-  //   }
-  // })
-  //   .join()
+  return [...str]
+    .map((char) =>
+      char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()
+    )
+    .join('');
 }
 
 /**
@@ -413,8 +411,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, -1);
 }
 
 /**
@@ -447,8 +445,8 @@ function unbracketTag(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
